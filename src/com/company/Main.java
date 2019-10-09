@@ -11,8 +11,6 @@ public class Main {
         Read read = new Read();
         File fileIn = new File(System.getProperty("user.dir")+"\\Card.csv.");
         File fileOut = new File(System.getProperty("user.dir")+"\\TechstopDublin.csv.");
-        PrintWriter printWriter = new PrintWriter(new FileWriter(fileOut, true));
-        LineNumberReader lineNumber = new LineNumberReader(new FileReader(fileIn));
 
         while (true) {
 
