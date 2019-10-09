@@ -12,6 +12,7 @@ public class Main {
         File fileIn = new File(System.getProperty("user.dir")+"\\Card.csv.");
         File fileOut = new File(System.getProperty("user.dir")+"\\TechstopDublin.csv.");
 
+
         while (true) {
 
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter((fileOut), true));
