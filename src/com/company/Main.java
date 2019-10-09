@@ -8,34 +8,31 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-
+        Read read = new Read();
         File fileIn = new File(System.getProperty("user.dir")+"\\Card.csv.");
         File fileOut = new File(System.getProperty("user.dir")+"\\TechstopDublin.csv.");
         PrintWriter printWriter = new PrintWriter(new FileWriter(fileOut, true));
         LineNumberReader lineNumber = new LineNumberReader(new FileReader(fileIn));
-        String ID = "";
-        String Name = "";
 
-        int i = 0;
-
-        while (i == 0) {
+        while (true) {
 
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter((fileOut), true));
-            String Card = scanCard();
+            read.setCard(scanCard());
             Scanner scannerFile = scanFile(fileIn);
-            ID = scannerFile.next();
-            Name = scannerFile.next();
+            read.setID(scannerFile.next());
+            read.setName(scannerFile.next());
 
-            if (ID.contains(Card)) {
-                found(Name,bufferedWriter, fileIn, scannerFile, Card, fileOut);
+            if (read.getID().contains(read.getCard())) {
+                found(read.getName(),bufferedWriter);
             }else if (!scannerFile.hasNext()) {
-                notFound(bufferedWriter, fileIn, scannerFile, Card, fileOut);
+                notFound(bufferedWriter);
 
             }
         }
     }
 
     private static String scanCard(){
+
         Scanner scannerCard = new Scanner(System.in);
         System.out.println("Scan:");
         return scannerCard.nextLine();
@@ -52,13 +49,13 @@ public class Main {
         bufferedWriter.append(" ");
         bufferedWriter.append(Name);
     }
-    private static void found(String Name, BufferedWriter bufferedWriter,File fileIn, Scanner scannerFile,String Card,File fileOut) throws IOException {
+    private static void found(String Name, BufferedWriter bufferedWriter) throws IOException {
         Date date = new Date();
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         outFile(Name, date, df, bufferedWriter);
         bufferedWriter.close();
     }
-    private static void notFound(BufferedWriter bufferedWriter,File fileIn, Scanner scannerFile,String Card,File fileOut) throws IOException {
+    private static void notFound(BufferedWriter bufferedWriter) throws IOException {
         Date date = new Date();
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         outFile("Not Found", date, df, bufferedWriter);
