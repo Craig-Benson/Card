@@ -16,9 +16,6 @@ public class Main {
         String ID = "";
         String Name = "";
 
-
-
-
         int i = 0;
 
         while (i == 0) {
